@@ -1,0 +1,29 @@
+<html>
+   <head>
+        <title>Ứng dụng trắc nghiệm lịch sử</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href = "{{ url_for('static', filename = 'main.css') }}" />
+   </head>
+   
+   <body>
+        <h1>Ứng dụng trắc nghiệm lịch sử</h1>
+ 
+        <form action = "answer" method = "POST">
+            {% for i in result[0] %}
+            <h3>Câu {{ i + 1 }}</h3>
+            <input style="display: None" name="id_{{i}}" value={{ result[1][i]["_id"] }} >
+            <h4 style="color:black; background-color:powderblue; ">{{ result[1][i]["question"] }}</h4>
+
+                <input name="option_{{i}}" type="radio" value="A">A. {{ result[1][i]["A"] }} <br>
+                <input name="option_{{i}}" type="radio" value="B">B. {{ result[1][i]["B"] }} <br>
+                <input name="option_{{i}}" type="radio" value="C">C. {{ result[1][i]["C"] }} <br>
+                <input name="option_{{i}}" type="radio" value="D">D. {{ result[1][i]["D"] }} <br>
+
+            <br/>
+            {% endfor %}
+            
+            <p><input type = "submit" value = "Gửi kết quả" /></p>
+        </form>
+    </body>
+</html>

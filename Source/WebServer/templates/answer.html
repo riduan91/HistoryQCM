@@ -1,0 +1,36 @@
+<html>
+   <head>
+        <title>Ứng dụng trắc nghiệm lịch sử</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href = "{{ url_for('static', filename = 'main.css') }}" />
+   </head>
+   <body>
+        <h1>Kết quả bài khảo sát</h1>
+        <h3 style="background-color:#58FAAC; ">Số câu trả lời đúng: {{ result[3] }} / {{ result[4] }} </h3>
+        <h3 style="background-color:#58FAAC; ">Điểm đánh giá: {{ result[3] / result[4] * 10 }} </h3>
+ 
+        <form action = "answer" method = "POST">
+            {% for i in result[0] %}
+            <h3>Câu {{ i + 1 }}</h3>
+            <input style="display: None" name="id_{{i}}" value={{ result[1][i]["_id"] }} >
+            <h4 style="color:black; background-color:powderblue; ">{{ result[1][i]["question"] }}</h4>
+
+                {% for letter in result[5] %}
+                    {% if result[2]["option_" + result[6][i]] == letter and result[1][i]["answer"] == letter %}
+                    <p style="background-color:yellow; "><input name="option_{{i}}" type="radio" value="{{letter}}" checked="">{{letter}}. {{ result[1][i][letter] }} </p>
+                    {% elif result[2]["option_" + result[6][i]] == letter %}
+                    <p><input name="option_{{i}}" type="radio" value="{{letter}}" checked="" >{{letter}}. {{ result[1][i][letter] }} </p>
+                    {% elif result[1][i]["answer"] == letter %}
+                    <p style="background-color:yellow; "><input name="option_{{i}}" type="radio" value="{{letter}}">{{letter}}. {{ result[1][i][letter] }} </p>
+                    {% else %}
+                    <p><input name="option_{{i}}" type="radio" value="{{letter}}">{{letter}}. {{ result[1][i][letter] }} </p>                    
+                    {% endif %}
+                {% endfor %}
+
+            <br/>
+            {% endfor %}
+            
+        </form>
+    </body>
+</html>
