@@ -2513,14 +2513,12 @@
 		}
 
 		table td {
-			padding: 0.75rem 0.75rem;
 			border: solid 1px;
 		}
 
 		table th {
 			font-size: 0.9rem;
 			font-weight: 700;
-			padding: 0 0.75rem 0.75rem 0.75rem;
 			text-align: left;
 			border: solid 1px;
 		}

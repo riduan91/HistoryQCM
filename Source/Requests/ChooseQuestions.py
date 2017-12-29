@@ -32,6 +32,7 @@ def chooseRandomQuestions(nb_questions):
         nb_questions = total_nb_questions
         
     raw_question_list = range(1, total_nb_questions + 1)
+    # Shuffle question list, independent of indices
     random.shuffle(raw_question_list)
     question_id_list = raw_question_list[:nb_questions]
     
@@ -47,7 +48,10 @@ def chooseRandomQuestions(nb_questions):
                                     "A":        my_question["A"], 
                                     "B":        my_question["B"], 
                                     "C":        my_question["C"], 
-                                    "D":        my_question["D"] } )
+                                    "D":        my_question["D"],
+                                    "level":    my_question["level"],
+                                    "tags":      my_question["tags"],
+                                    "explanation": my_question["explanation"]} )
         except TypeError:
             print "[Error] Question \"%s\" not found in dictionary." % question_id
 
@@ -66,5 +70,8 @@ def getResult(question_id):
                                     "B":        my_question["B"], 
                                     "C":        my_question["C"], 
                                     "D":        my_question["D"],
-                                    "answer":   my_question["answer"] }
+                                    "answer":   my_question["answer"],
+                                    "level":    my_question["level"],
+                                    "tags":      my_question["tags"],
+                                    "explanation": my_question["explanation"]}
     return res
